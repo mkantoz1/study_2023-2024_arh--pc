@@ -1,28 +1,63 @@
-SRC = presentation.md
-FILES += $(patsubst %.md, %.pdf, $(wildcard *.md))
-FILES += $(patsubst %.md, %.html, $(wildcard *.md))
+---
+## Front matter
+lang: ru-RU
+title: Презентация по лабораторной работе №1
+subtitle: Основы информационной безопасности
+author:
+  - Дворкина Е. В
+institute:
+  - Российский университет дружбы народов, Москва, Россия
+date: 16 февраля 2024
 
-FILTERS =
-PDF_ENGINE =
-PDF_OPTIONS =
-PDF_FORMAT_OPTIONS = -t beamer --slide-level=2
+## i18n babel
+babel-lang: russian
+babel-otherlangs: english
 
-FILTERS += --citeproc
-# FILTERS += -F pandoc-crossref
-PDF_ENGINE += --pdf-engine=lualatex
-PDF_OPTIONS += --number-sections
+## Fonts
+mainfont: PT Serif
+romanfont: PT Serif
+sansfont: PT Sans
+monofont: PT Mono
+mainfontoptions: Ligatures=TeX
+romanfontoptions: Ligatures=TeX
+sansfontoptions: Ligatures=TeX,Scale=MatchLowercase
+monofontoptions: Scale=MatchLowercase,Scale=0.9
 
-REVEALJS_THEME = beige
+## Formatting pdf
+toc: false
+toc-title: Содержание
+slide_level: 2
+aspectratio: 169
+section-titles: true
+theme: metropolis
+header-includes:
+ - \metroset{progressbar=frametitle,sectionpage=progressbar,numbering=fraction}
+ - '\makeatletter'
+ - '\beamer@ignorenonframefalse'
+ - '\makeatother'
+---
 
-%.pdf: %.md
-	-@pandoc "$<" $(FILTERS) $(PDF_ENGINE) $(PDF_OPTIONS) $(PDF_FORMAT_OPTIONS) -o "$@"
+# Информация
 
-%.html: %.md
-	-@pandoc "$<" --self-contained -t revealjs -V theme=$(REVEALJS_THEME) -o "$@"
+## Докладчик
 
-all: $(FILES)
+:::::::::::::: {.columns align=center}
+::: {.column width="70%"}
 
-clean:
-	-@rm $(FILES) *~
+  * Дворкина Ева Владимировна
+  * студентка группы НКАбд-01-22
+  * Российский университет дружбы народов
+  * <https://vk.com/yuri.kamori>
 
-cleanall: clean
+:::
+::: {.column width="30%"}
+
+![](./image/e.jpg)
+
+:::
+::::::::::::::
+
+## Цель
+
+Целью данной работы является приобретение практических навыков
+установки операционной системы на виртуальную машину, настройки ми-
